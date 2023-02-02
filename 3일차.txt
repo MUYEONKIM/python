@@ -1,0 +1,120 @@
+f-string : f'문자열{변수}문자열' 형태로 선언하며 변수 내용이 문자열에 포함됨
+
+------------------------------
+import numpy as np
+
+a = [1,2,3,4,5,6,7,8,9,10]
+b = np.array([1,2,3,4,5,6,7,8,9,10])
+
+answer = []
+
+for i in a :
+    answer.append(i*2)
+
+print(answer)
+print(b*2)
+----------------------------------
+#range에서 범위는 n+1이면 n까지 이다
+-----------------------------------------
+area = int(input('직사각형 넓이'))
+
+for i in range(1, area + 1) :
+    if i > area : break
+    if area % i : continue #넓이를 나누었을때 나머지가 있다는 것은 공약수가 아니기 때문에 continue를 해서 넘어가주는것
+    print(f'{i}*{area//i}')
+
+--------------------------------
+print('*를 출력합니다')
+n = int(input('몇 개를 출력할까요? : '))
+w = int(input('몇 개 마다 줄바꿈할까요? : ')) #다른말로는 한줄에 몇개를 출력할까요?
+
+for _ in range(n// w):  # n//w 번 반복
+    print('*'*w)        # *를 w번 출력
+
+rest = n%w      #rest 값이 있으면
+if rest:             #rest값만큼 * 반복 출력
+    print('*'*rest)
+
+-------------------------------
+print(f'{i * j:3}', end='') #i*j값을 3자리로 출력
+
+파이썬에서는 반복을 수행하되, 변수 값이 필요 없을 때 언더바(_)를 사용할 수 있다.
+
+split('구분자') 구분자로 쪼개기
+-----------------------------------
+보통 값을 입력받을때는 input()을 쓰는데
+
+import sys
+
+sys.stdin.readline().strip()
+
+----------------------------
+import math
+
+a = int(input('정수를 입력하세요'))
+
+for root in range(1,a+1):
+    for pwr in range(2,7):
+        if math.pow(root,pwr) == a:
+            print(f'{root} ** {pwr}')
+
+-------------------------
+def solution(a, b):
+    answer = []
+    for i in range(min(a,b),0,-1):
+        if a % i == 0 and b % i == 0:
+            break
+    return i
+
+
+print(solution(2,4))
+
+----------------
+range(시작, 끝, 간격 < 마이너스도 됨)
+range(20, 0, -1) 이렇게 하면 큰거에서 부터 작은거
+
+-----------최소공배수
+# Q1 Answer template
+
+def solution(a, b):
+    for i in range(max(a,b), (a*b)+1):
+        if i%a ==0 and i%b == 0:
+            answer = i
+            break
+    return answer
+
+print(solution(12,16))
+---------------
+import math
+
+math.gcd(a,b) > 최대공약수
+math.lcm(a,b) > 최소공배수
+
+----------------
+문자열 분리 문제
+
+N = int(input())
+a = N // 10
+b = N % 10
+c = (a + b) % 10
+e = b*10 + c
+count = 1
+while N != e:
+    a = e // 10
+    b = e % 10
+    c = (a + b) % 10
+    e = b*10 + c
+    count += 1
+
+print(count)
+
+>> 좀 더 간결하게
+while True:
+    a = e // 10
+    b = e % 10
+    c = (a + b) % 10
+    e = b*10 + c
+    count += 1
+
+    if i == N:
+	break
